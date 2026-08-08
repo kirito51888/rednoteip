@@ -11,6 +11,7 @@ import { DEFAULT_BUDGET_PACKAGES, DEFAULT_NEXT_ACTIONS } from "../config/modelCo
 import { generateAICreativeDirections } from "../services/aiService";
 import { DataProvenanceBadge } from "../components/common/DataProvenanceBadge";
 import { ScoreExplanationModal } from "../components/common/ScoreExplanationModal";
+import { SixFactorConsole } from "../components/common/SixFactorConsole";
 import {
   Sparkles,
   Search,
@@ -122,17 +123,17 @@ export const SparkPage: React.FC<Props> = ({
         else baseScore = 82;
       } else if (brand.industry === "服饰鞋包") {
         if (ip.name === "REDGALA") baseScore = 95;
-        else if (ip.name === "慢人节") baseScore = 92;
         else if (ip.name === "夜人节") baseScore = 88;
+        else if (ip.name === "小美说") baseScore = 80;
         else baseScore = 70;
       } else if (brand.industry === "日化家清") {
-        if (ip.name === "慢人节") baseScore = 94;
+        if (ip.name === "夜人节") baseScore = 90;
         else if (ip.name === "小美说") baseScore = 82;
         else baseScore = 76;
       } else {
         if (ip.name === "小美说") baseScore = 91;
-        else if (ip.name === "REDGALA") baseScore = 85;
-        else baseScore = 75;
+        else if (ip.name === "REDGALA") baseScore = 88;
+        else baseScore = 80;
       }
 
       res[ip.id] = {
@@ -264,6 +265,15 @@ export const SparkPage: React.FC<Props> = ({
           </p>
         </div>
       </section>
+
+      {/* SIGNATURE ELEMENT: SIX-FACTOR WEIGHT TUNING CONSOLE (六联权重调音台) */}
+      <SixFactorConsole
+        brand={brand}
+        ips={ips}
+        selectedIpId={selectedIpId}
+        onSelectIp={(id) => setSelectedIpId(id)}
+        selectedBudgetTier={selectedBudgetTier}
+      />
 
       {/* SECTION 2: 4-IP FIT MODEL COMPARISON & RADAR */}
       <section className="bg-white rounded-2xl border border-stone-200 p-6 space-y-6 shadow-sm">

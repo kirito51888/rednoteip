@@ -91,6 +91,7 @@ export const CasesPage: React.FC<Props> = ({ cases, onSelectCaseForSpark }) => {
               className="w-full text-xs border border-stone-300 rounded-xl p-2 bg-stone-50 focus:outline-none"
             >
               <option value="全部行业">全部行业</option>
+              <option value="汽车出行">汽车出行</option>
               <option value="美妆个护">美妆个护</option>
               <option value="医疗医美">医疗医美</option>
               <option value="日化家清">日化家清</option>
@@ -106,10 +107,9 @@ export const CasesPage: React.FC<Props> = ({ cases, onSelectCaseForSpark }) => {
               className="w-full text-xs border border-stone-300 rounded-xl p-2 bg-stone-50 focus:outline-none"
             >
               <option value="全部IP">全部 IP</option>
+              <option value="REDGALA">REDGALA</option>
               <option value="夜人节">夜人节</option>
               <option value="小美说">小美说</option>
-              <option value="REDGALA">REDGALA</option>
-              <option value="慢人节">慢人节</option>
             </select>
           </div>
 

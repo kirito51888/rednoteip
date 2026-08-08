@@ -8,11 +8,13 @@ import {
 } from "./data/mockData";
 import { DEFAULT_IPS } from "./config/modelConfig";
 
-import { Navbar } from "./components/layout/Navbar";
+import { Sidebar } from "./components/layout/Sidebar";
+import { TopHeader } from "./components/layout/TopHeader";
 import { Footer } from "./components/layout/Footer";
 import { ScoreExplanationModal } from "./components/common/ScoreExplanationModal";
 
 import { DashboardPage } from "./pages/DashboardPage";
+import { ConstellationPage } from "./pages/ConstellationPage";
 import { PulsePage } from "./pages/PulsePage";
 import { SparkPage } from "./pages/SparkPage";
 import { EchoPage } from "./pages/EchoPage";
@@ -23,6 +25,7 @@ import { SettingsPage } from "./pages/SettingsPage";
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
   const [demoMode, setDemoMode] = useState<boolean>(true);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState<boolean>(false);
 
   // Core Data State
   const [brands, setBrands] = useState<Brand[]>(MOCK_BRANDS);
@@ -177,20 +180,32 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-100 text-stone-900 font-sans flex flex-col justify-between selection:bg-red-500 selection:text-white">
-      <div>
-        {/* Sticky Header Navigation */}
-        <Navbar
+    <div className="min-h-screen bg-[#F7F8F6] text-[#16211F] font-sans flex flex-col lg:flex-row selection:bg-[#E8384F] selection:text-white">
+      {/* Left Sidebar Layout */}
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        demoMode={demoMode}
+        setDemoMode={setDemoMode}
+        onNewBrandDiagnosis={() => setActiveTab("settings")}
+        isOpenMobile={isMobileSidebarOpen}
+        setIsOpenMobile={setIsMobileSidebarOpen}
+      />
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-w-0 min-h-screen">
+        {/* Top Header Navigation */}
+        <TopHeader
           activeTab={activeTab}
-          setActiveTab={setActiveTab}
           onSearchBrand={handleSearchBrand}
+          onNewBrandDiagnosis={() => setActiveTab("settings")}
           demoMode={demoMode}
           setDemoMode={setDemoMode}
-          onNewBrandDiagnosis={() => setActiveTab("settings")}
+          onOpenMobileSidebar={() => setIsMobileSidebarOpen(true)}
         />
 
-        {/* Main Content Area */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        {/* Page Content View Container */}
+        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
           {activeTab === "dashboard" && (
             <DashboardPage
               brands={brands}
@@ -199,6 +214,13 @@ export default function App() {
               reviewReport={selectedReviewReport}
               onSelectBrand={handleSelectBrandForSpark}
               onNavigate={setActiveTab}
+            />
+          )}
+
+          {activeTab === "constellation" && (
+            <ConstellationPage
+              ips={ips}
+              onNavigateToPulse={(ind) => setActiveTab("pulse")}
             />
           )}
 
@@ -252,6 +274,8 @@ export default function App() {
             />
           )}
         </main>
+
+        <Footer />
       </div>
 
       {/* Score Explainability Detail Modal */}
@@ -266,9 +290,6 @@ export default function App() {
         bonusPoints={modalState.bonusPoints}
         deductions={modalState.deductions}
       />
-
-      {/* Global Footer */}
-      <Footer onNavigate={setActiveTab} />
     </div>
   );
 }

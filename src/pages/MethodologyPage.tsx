@@ -24,7 +24,7 @@ export const MethodologyPage: React.FC = () => {
         </div>
         <h1 className="text-2xl sm:text-3xl font-black">灵犀 Adapter 数据模型与算法可解释性</h1>
         <p className="text-xs sm:text-sm text-stone-300 max-w-3xl">
-          详细说明小红书大事件招商顾问底层的 7 大匹配维度、AURA 复盘模型、灵犀数据 API 映射字段与合规免责边界。
+          详细说明红罗盘（RED Compass）底层的 7 大匹配维度、AURA 复盘模型、灵犀数据 API 映射字段与合规免责边界。
         </p>
       </div>
 

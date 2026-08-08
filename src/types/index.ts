@@ -1,4 +1,4 @@
-export type IndustryType = "美妆个护" | "医疗医美" | "日化家清" | "服饰鞋包";
+export type IndustryType = "汽车出行" | "美妆个护" | "医疗医美" | "日化家清" | "服饰鞋包";
 
 export interface DataProvenance {
   source: string; // e.g. "灵犀平台 API", "内部导盘", "公开研报", "演示模拟数据"
@@ -61,6 +61,13 @@ export interface UniqueAsset {
   activationIdea: string;
 }
 
+export interface SearchLandscapeItem {
+  kw: string;
+  idx: number; // 搜索指数
+  own: number; // 自有内容占比 %
+  note: string; // 判读
+}
+
 export interface Brand {
   id: string;
   name: string;
@@ -78,21 +85,66 @@ export interface Brand {
   opportunityScore: BrandOpportunityScore;
   recommendedIPs: string[];
   provenance: DataProvenance;
+
+  // Enriched fields from HTML Engine
+  logoTone?: string;
+  fictional?: boolean;
+  ownAsset?: string;
+  outsideIntel?: string;
+  hotspots?: string[];
+  pits?: string[];
+  searchLandscape?: SearchLandscapeItem[];
+  userInsight?: string[];
+  launchMonths?: number[];
+  whiteSpace?: Record<string, number>; // IP ID -> score
+  opportunity?: string;
+}
+
+export interface CoreActionItem {
+  title: string;
+  detail: string;
 }
 
 export interface EventIP {
   id: string;
   name: string;
+  en?: string;
+  color?: string;
+  categoryType?: string; // e.g. "社会营销" | "情绪营销" | "场景营销"
+  oneLineGoal?: string;  // 一句话目标
+  coreActions?: CoreActionItem[]; // 核心动作
   tagline: string;
+  oneline?: string;
   spirit: string; // 精神内核
   targetAudience: string; // 核心人群
   audienceSize: string; // e.g. "8,500万+ 月度覆盖"
   scenarios: string[]; // 适配场景
   cooperationWindow: string; // e.g. "Q3 (8-9月)"
+  windowMonths?: number[];
   heroPosterUrl?: string;
   keyAssets: string[]; // 核心线下/线上资产
   pastHighlights: string; // 历史亮点/口碑
   fitWeights: Record<string, number>;
+
+  // Enriched fields from HTML Engine
+  ta?: string[];
+  tone?: string[];
+  scene?: string[];
+  gene?: string[];
+  slots?: string[];
+  reachDemo?: string;
+  history?: string[];
+  fit?: Record<string, number>; // Industry -> Fit Score (0-100)
+}
+
+export interface FactorWeights {
+  ta: number;
+  tone: number;
+  scene: number;
+  timing: number;
+  white: number;
+  budget: number;
+  compliance?: number;
 }
 
 export interface CreativeRoute {
@@ -191,6 +243,7 @@ export interface WordCloudItem {
   value: number;
   category: "高频词" | "增量词" | "品牌关联" | "产品功效" | "情绪价值" | "争议负面";
   period: "投前" | "投后";
+  tag?: "new" | "grow" | "gone";
 }
 
 export interface TimeseriesPoint {
@@ -283,6 +336,16 @@ export interface CaseStudy {
   nextAdvice: string;
   isDemo: boolean;
   coverImage?: string;
+}
+
+export interface FactorWeights {
+  ta: number;
+  tone: number;
+  scene: number;
+  timing: number;
+  white: number;
+  budget: number;
+  compliance?: number;
 }
 
 export interface IndustryData {

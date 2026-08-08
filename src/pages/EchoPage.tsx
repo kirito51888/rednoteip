@@ -302,18 +302,32 @@ export const EchoPage: React.FC<Props> = ({ report, onSaveReportAsCase, onOpenEx
               {report.wordsBeforeAfter.map((w, idx) => (
                 <div
                   key={idx}
-                  className={`px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1 border ${
-                    w.period === "投前"
-                      ? "bg-stone-100 text-stone-600 border-stone-200"
-                      : w.category === "高频词" || w.category === "增量词"
-                      ? "bg-emerald-50 text-emerald-800 border-emerald-200"
-                      : w.category === "争议负面"
-                      ? "bg-amber-50 text-amber-800 border-amber-200"
-                      : "bg-blue-50 text-blue-800 border-blue-200"
+                  className={`px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1.5 border transition-all ${
+                    w.tag === "new"
+                      ? "bg-red-50 text-red-900 border-red-300 shadow-sm"
+                      : w.tag === "grow"
+                      ? "bg-emerald-50 text-emerald-900 border-emerald-300"
+                      : w.tag === "gone"
+                      ? "bg-stone-100 text-stone-400 border-stone-200 line-through"
+                      : "bg-blue-50 text-blue-900 border-blue-200"
                   }`}
                 >
                   <span>{w.text}</span>
-                  <span className="text-[10px] opacity-70">({w.category})</span>
+                  {w.tag === "new" && (
+                    <span className="text-[9px] font-extrabold px-1 bg-red-600 text-white rounded">
+                      NEW 爆火
+                    </span>
+                  )}
+                  {w.tag === "grow" && (
+                    <span className="text-[9px] font-extrabold px-1 bg-emerald-600 text-white rounded">
+                      GROW 暴涨
+                    </span>
+                  )}
+                  {w.tag === "gone" && (
+                    <span className="text-[9px] font-medium px-1 bg-stone-200 text-stone-500 rounded no-underline">
+                      GONE 消失
+                    </span>
+                  )}
                 </div>
               ))}
             </div>

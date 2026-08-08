@@ -66,7 +66,7 @@ export class MockDataAdapter implements DataAdapter {
         deductions: ["品牌在站内尚缺大单品爆款导流"],
         verificationQuestions: ["品牌 Q3 是否具备明确的预算排期？"],
       },
-      recommendedIPs: ["夜人节", "小美说", "慢人节"],
+      recommendedIPs: ["REDGALA", "夜人节", "小美说"],
       provenance: {
         source: "演示生成 Adapter (Mock)",
         scope: "小红书站内 2026Q2",

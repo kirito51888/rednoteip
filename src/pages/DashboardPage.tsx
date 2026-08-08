@@ -55,13 +55,13 @@ export const DashboardPage: React.FC<Props> = ({
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold border border-red-500/30 mb-2">
                 <Flame className="w-3.5 h-3.5 text-red-500" />
-                <span>今日招商驾驶舱 • 2026 暑期大事件特供版</span>
+                <span>小红书大事件 IP 招商与策划决策平台</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
-                小红书大事件 IP 招商顾问
+                红罗盘 （RED Compass）
               </h1>
-              <p className="text-xs sm:text-sm text-stone-300 mt-1 max-w-2xl">
-                基于小红书站内搜索供需差、品牌独有资产与大事件 IP 精神内核，帮助 CBD 快速找到品牌切入点，打造高度可落地的共创方案。
+              <p className="text-xs sm:text-sm text-stone-300 mt-2 max-w-3xl leading-relaxed">
+                基于小红书大事件 IP 的历史合作数据与用户画像模型，<strong className="text-white font-semibold">一端为 CBD 提供“品牌 × IP”合作价值的量化评估</strong>，<strong className="text-white font-semibold">一端为营销策划提供创意灵感与执行参考</strong>，让招商决策从“凭经验”升级为“靠数据”，让方案创作从“空想灵感”升级为“数据支撑的灵感”。
               </p>
             </div>
 
@@ -101,7 +101,7 @@ export const DashboardPage: React.FC<Props> = ({
                 type="text"
                 value={quickQuery}
                 onChange={(e) => setQuickQuery(e.target.value)}
-                placeholder="搜索品牌 (例如: 珀莱雅, 观夏, 蕉内, 华熙生物) 或输入品类..."
+                placeholder="搜索品牌 (例如: 一汽奥迪, Dior 迪奥, 珀莱雅, 华熙生物) 或输入品类..."
                 className="w-full bg-transparent text-white text-sm focus:outline-none placeholder:text-stone-500 pr-2"
               />
               <button
@@ -146,54 +146,54 @@ export const DashboardPage: React.FC<Props> = ({
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div
             onClick={() => {
-              onSelectBrand("珀莱雅 PROYA");
+              onSelectBrand("一汽奥迪 FAW-Audi");
               onNavigate("spark");
             }}
             className="bg-white rounded-2xl p-5 border border-stone-200 hover:border-red-300 hover:shadow-lg transition-all cursor-pointer space-y-3 group"
           >
             <div className="flex items-center justify-between">
               <span className="px-2.5 py-1 bg-red-50 text-red-700 text-xs font-bold rounded-md">
-                搜索暴涨 128%
+                新能源智驾 YoY +38%
               </span>
               <ArrowUpRight className="w-4 h-4 text-stone-400 group-hover:text-red-600 group-hover:translate-x-0.5 transition-all" />
             </div>
             <div>
               <h3 className="font-bold text-stone-900 group-hover:text-red-600 transition-colors">
-                美妆个护 • 珀莱雅 PROYA
+                汽车出行 • 一汽奥迪 FAW-Audi
               </h3>
               <p className="text-xs text-stone-600 mt-1 line-clamp-2">
-                ‘夜修黑科技面膜’站内搜索量暴增，供需缺口巨大，适配【夜人节】IP，合作势能 92 分！
+                双车格 PPE 纯电平台首发，匹配【小美说】‘城市双生计划’，完美契合都市精英，合作势能 95 分！
               </p>
             </div>
             <div className="flex items-center justify-between text-[11px] text-stone-500 pt-2 border-t border-stone-100">
-              <span>推荐切入点: 夜间熬夜救急</span>
+              <span>推荐切入点: 城市双生AB面生活方式</span>
               <span className="font-bold text-red-600">点击生成方案 →</span>
             </div>
           </div>
 
           <div
             onClick={() => {
-              onSelectBrand("观夏 ToSummer");
+              onSelectBrand("Dior 迪奥");
               onNavigate("spark");
             }}
             className="bg-white rounded-2xl p-5 border border-stone-200 hover:border-red-300 hover:shadow-lg transition-all cursor-pointer space-y-3 group"
           >
             <div className="flex items-center justify-between">
-              <span className="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-md">
-                松弛感趋势 Top1
+              <span className="px-2.5 py-1 bg-purple-50 text-purple-700 text-xs font-bold rounded-md">
+                夜人节奢品独家
               </span>
               <ArrowUpRight className="w-4 h-4 text-stone-400 group-hover:text-red-600 group-hover:translate-x-0.5 transition-all" />
             </div>
             <div>
               <h3 className="font-bold text-stone-900 group-hover:text-red-600 transition-colors">
-                香氛生活 • 观夏 ToSummer
+                美妆个护 • Dior 迪奥
               </h3>
               <p className="text-xs text-stone-600 mt-1 line-clamp-2">
-                小红书‘东方香氛’与‘居家疗愈’搜索创新高，完美契合【慢人节】松弛感，匹配分 88 分！
+                Rouge Dior On Stage Ink Blur 柔焦唇釉 × 夜人节 ‘今夜上妆即上场’，四城四店 HPP 联动，合作势能 94 分！
               </p>
             </div>
             <div className="flex items-center justify-between text-[11px] text-stone-500 pt-2 border-t border-stone-100">
-              <span>推荐切入点: 东方庭院慢香静心</span>
+              <span>推荐切入点: 夜人节早鸟高点与1v1彩妆教室</span>
               <span className="font-bold text-red-600">点击生成方案 →</span>
             </div>
           </div>

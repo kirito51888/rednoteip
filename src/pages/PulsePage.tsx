@@ -302,6 +302,78 @@ export const PulsePage: React.FC<Props> = ({
             ))}
           </ul>
         </div>
+
+        {/* IP × Industry Category Fit Matrix Table (IP × 行业 亲和度矩阵) */}
+        <div className="bg-stone-900 text-white rounded-2xl p-6 space-y-4 shadow-md border border-stone-800">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-800 pb-3">
+            <div>
+              <h3 className="text-sm font-bold flex items-center gap-2">
+                <Compass className="w-4 h-4 text-red-500" />
+                <span>IP × 行业 亲和度承载力矩阵 (Fit Matrix)</span>
+              </h3>
+              <p className="text-xs text-stone-400 mt-0.5">
+                点击任一网格可直接筛选并诊断该品类的典型品牌，数值为 IP 对该行业的天然承载系数。
+              </p>
+            </div>
+            <span className="seal-badge seal-badge-cal">MODEL FIT MAP</span>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs text-center border-collapse">
+              <thead>
+                <tr className="bg-stone-800 text-stone-300 border-b border-stone-700 font-mono">
+                  <th className="p-3 text-left font-bold">IP 名 \ 行业品类</th>
+                  <th className="p-3">美妆个护</th>
+                  <th className="p-3">医疗医美</th>
+                  <th className="p-3">日化家清</th>
+                  <th className="p-3">服饰鞋包</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-stone-800">
+                {[
+                  { name: "REDGALA", fit: { 汽车出行: 92, 美妆个护: 90, 医疗医美: 58, 日化家清: 46, 服饰鞋包: 95 } },
+                  { name: "夜人节", fit: { 汽车出行: 80, 美妆个护: 94, 医疗医美: 61, 日化家清: 74, 服饰鞋包: 70 } },
+                  { name: "小美说", fit: { 汽车出行: 98, 美妆个护: 94, 医疗医美: 86, 日化家清: 52, 服饰鞋包: 44 } },
+                ].map((ipRow) => (
+                  <tr key={ipRow.name} className="hover:bg-stone-800/50 transition-colors">
+                    <td className="p-3 text-left font-bold text-white flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                      <span>{ipRow.name}</span>
+                    </td>
+                    {(["美妆个护", "医疗医美", "日化家清", "服饰鞋包"] as IndustryType[]).map((indKey) => {
+                      const fitVal = ipRow.fit[indKey];
+                      const isHigh = fitVal >= 85;
+                      const isMid = fitVal >= 65;
+                      return (
+                        <td key={indKey} className="p-2">
+                          <button
+                            onClick={() => {
+                              setSelectedIndustry(indKey);
+                              const targetB = brands.find((b) => b.industry === indKey) || brands[0];
+                              setSelectedBrand(targetB);
+                            }}
+                            className={`w-full py-2.5 px-3 rounded-lg border transition-all flex flex-col items-center gap-0.5 ${
+                              isHigh
+                                ? "bg-red-600/20 text-red-300 border-red-500/40 hover:bg-red-600/30"
+                                : isMid
+                                ? "bg-emerald-600/20 text-emerald-300 border-emerald-500/30 hover:bg-emerald-600/30"
+                                : "bg-stone-800/80 text-stone-400 border-stone-700 hover:bg-stone-800"
+                            }`}
+                          >
+                            <span className="font-mono font-bold text-sm">{fitVal}</span>
+                            <span className="text-[9px] opacity-75">
+                              {isHigh ? "强承载" : isMid ? "可承载" : "弱承载"}
+                            </span>
+                          </button>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </section>
 
       {/* Brand Opportunity Scanner (品牌机会扫描) */}

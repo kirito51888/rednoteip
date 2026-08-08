@@ -1,1 +1,93 @@
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --zhu: #E8384F;        /* 朱砂 主强调 */
+    --zhu-deep: #B8202F;
+    --qing: #1F5C56;       /* 青玉 结构色 */
+    --qing-mid: #2F7D74;
+    --qing-pale: #DCE9E6;
+    --teng: #E8A33D;       /* 藤黄 警示/待校准 */
+    --teng-pale: #FBF0DC;
+    --bone: #F7F8F6;       /* 瓷白 底 */
+    --bone-2: #EEF0EC;
+    --ink: #16211F;        /* 深墨 主字 */
+    --ink-2: #42524F;
+    --ink-3: #7C8B88;
+    --line: #D6DCD9;
+    --line-2: #E6EAE7;
+  }
+
+  body {
+    background-color: var(--bone);
+    color: var(--ink);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .font-serif-custom {
+    font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, "SimSun", serif;
+  }
+}
+
+/* Custom Seal Stamp Badges */
+.seal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border: 1px solid #E8384F;
+  color: #E8384F;
+  background-color: #ffffff;
+  border-radius: 2px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.seal-badge-cal {
+  border-color: #E8A33D;
+  color: #9A6512;
+  background-color: #FBF0DC;
+}
+
+.seal-badge-real {
+  border-color: #2F7D74;
+  color: #1F5C56;
+  background-color: #DCE9E6;
+}
+
+/* HTML Reference Header Gradient Rule */
+.header-top-rule {
+  position: relative;
+}
+.header-top-rule::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, #E8384F 0 22%, #1F5C56 22% 100%);
+}
+
+/* Print Stylesheet for One-Page Proposals */
+@media print {
+  header, nav, .no-print, button, input, select {
+    display: none !important;
+  }
+  body {
+    background-color: #ffffff !important;
+    color: #16211F !important;
+  }
+  .print-page {
+    border: 1px solid #999999 !important;
+    box-shadow: none !important;
+    padding: 20px !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+}
+
