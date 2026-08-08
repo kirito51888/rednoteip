@@ -1,0 +1,6 @@
+{
+  "name": "RED EVENT MATCH - 小红书大事件 IP 招商顾问",
+  "description": "面向小红书商业化团队的「大事件 IP 招商顾问」工具，覆盖 PULSE 机会雷达、SPARK 共创策略和 ECHO 价值复盘三阶段全流程招商决策。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
